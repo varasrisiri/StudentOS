@@ -21,3 +21,10 @@ Base = declarative_base()
 from models.user import User
 
 Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
